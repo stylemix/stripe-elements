@@ -277,6 +277,9 @@ export class StripeElements extends LitElement {
      * @readonly
      */
     elements: { type: Object },
+
+    locale: { type: String, attribute: 'locale' }
+
   }
 
   #brand = null;
@@ -569,7 +572,7 @@ export class StripeElements extends LitElement {
       console.warn(message);
     } else if (this.publishableKey) {
       this.#stripe = Stripe(this.publishableKey);
-      this.#elements = this.#stripe.elements();
+      this.#elements = this.#stripe.elements({ locale: this.locale });
     } else {
       this.#elements = null;
     }
